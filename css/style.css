@@ -19,6 +19,11 @@ h2 {
   font-size: 1.7rem;
 }
 
+p {
+    font-size: 1.2rem;
+
+}
+
 /* headings */
 header {
   text-align: center;
@@ -28,6 +33,7 @@ header {
 main {
   max-width: 90vw;
   margin: 0 auto;
+  padding-top: 20px;
 }
 
 .button-wrapper {
