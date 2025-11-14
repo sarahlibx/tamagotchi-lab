@@ -43,7 +43,8 @@ let gameOver;
 const boredomStatEl = document.querySelector('#boredom-stat');
 const hungetStatEl = document.querySelector('#hunger-stat');
 const sleepinessStatEl = document.querySelector('#sleepiness-stat');
-const kittenStatEl = document.querySelector('game-graphic-landing');
+const kittenStatEl = document.querySelector('.game-graphic-landing');
+const kittenSadStatEl = document.querySelector('.game-loss');
 
 // store button elements inside of game interface section
 const playBtnEl = document.querySelector('#play');
@@ -61,6 +62,8 @@ const resetBtnEl = document.querySelector('#restart');
 const init = () => {
     resetBtnEl.classList.add('hidden');
     gameMessageEl.classList.add('hidden');
+    kittenStatEl.style.display = 'block';
+    kittenSadStatEl.style.display = 'none';
 
     object.boredom = 0;
     object.hunger = 0;
@@ -92,7 +95,8 @@ const renderGame = () => {
         window.clearInterval(timer);
         resetBtnEl.classList.remove('hidden');
         gameMessageEl.classList.remove('hidden');
-        kittenStatEl.src = 'sad-kitten.png';
+        kittenStatEl.style.display = 'none';
+        kittenSadStatEl.style.display = 'block';
     }
 };
 

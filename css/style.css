@@ -77,12 +77,12 @@ button:active {
 }
 
 /* images */
-.game-graphic {
+.game-graphic-landing, .game-loss {
   max-height: 33vmin;
   margin-bottom: 32px;
 }
 
 .hidden {
-  visibility: hidden;
+  display: none;
 }
 
