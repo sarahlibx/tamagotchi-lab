@@ -43,6 +43,7 @@ let gameOver;
 const boredomStatEl = document.querySelector('#boredom-stat');
 const hungetStatEl = document.querySelector('#hunger-stat');
 const sleepinessStatEl = document.querySelector('#sleepiness-stat');
+const kittenStatEl = document.querySelector('game-graphic-landing');
 
 // store button elements inside of game interface section
 const playBtnEl = document.querySelector('#play');
@@ -91,6 +92,7 @@ const renderGame = () => {
         window.clearInterval(timer);
         resetBtnEl.classList.remove('hidden');
         gameMessageEl.classList.remove('hidden');
+        kittenStatEl.src = 'sad-kitten.png';
     }
 };
 
