@@ -50,7 +50,7 @@ const feedBtnEl = document.querySelector('#feed');
 const sleepBtnEl = document.querySelector('#sleep');
 
 // game status
-const gameMessageEl = document.querySelector('.game-state-wrapper');
+const gameMessageEl = document.querySelector('#message');
 
 // play again
 const resetBtnEl = document.querySelector('#restart');
@@ -58,14 +58,26 @@ const resetBtnEl = document.querySelector('#restart');
 /*-------------------------------- Functions --------------------------------*/
 // game state initialization
 const init = () => {
+    resetBtnEl.classList.add('hidden');
+    gameMessageEl.classList.add('hidden');
+
+    object.boredom = 0;
+    object.hunger = 0;
+    object.sleepiness = 0;
+
     gameOver = false;
+
     timer = setInterval(function() {
         runGame();
     }, 2000);
 }
 
 const runGame = () => {
+    // update as tamagotchi objects updated
     updateStates();
+    // if any object value over 10, game over
+    checkGameOver();
+    // reset game
     renderGame();
 };
 
@@ -74,6 +86,12 @@ const renderGame = () => {
     boredomStatEl.textContent = object.boredom;
     hungetStatEl.textContent = object.hunger;
     sleepinessStatEl.textContent = object.sleepiness;
+
+    if (gameOver === true) {
+        window.clearInterval(timer);
+        resetBtnEl.classList.remove('hidden');
+        gameMessageEl.classList.remove('hidden');
+    }
 };
 
 const getRandomIncrement = () => {
@@ -87,8 +105,37 @@ const updateStates = () => {
     return object;
 };
 
+const checkGameOver = () => {
+    for (const key in object) {
+        if (object[key] > 10) {
+            gameOver = true;
+        }
+    }
+}
+
+const playBtnClick = () => {
+    object.boredom = 0;
+    renderGame();
+}
+
+const sleepBtnClick = () => {
+    object.sleepiness = 0;
+    renderGame();
+}
+
+const feedBtnClick = () => {
+    object.hunger = 0;
+    renderGame();
+}
+
 init();
 
 /*----------------------------- Event Listeners -----------------------------*/
 
+ playBtnEl.addEventListener('click', playBtnClick);
 
+ sleepBtnEl.addEventListener('click', sleepBtnClick);
+
+ feedBtnEl.addEventListener('click', feedBtnClick);
+
+ resetBtnEl.addEventListener('click', init);
