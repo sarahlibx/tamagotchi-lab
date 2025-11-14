@@ -65,8 +65,26 @@ const init = () => {
 }
 
 const runGame = () => {
-    // console.log('the game is running!');
-    // renderGame();
+    updateStates();
+    renderGame();
+};
+
+// update text content of each element w/updatedState random #
+const renderGame = () => {
+    boredomStatEl.textContent = object.boredom;
+    hungetStatEl.textContent = object.hunger;
+    sleepinessStatEl.textContent = object.sleepiness;
+};
+
+const getRandomIncrement = () => {
+    return Math.floor(Math.random() * 3);
+}
+
+const updateStates = () => {
+    for (const key in object) {
+        object[key] += getRandomIncrement();      
+    }
+    return object;
 };
 
 init();
